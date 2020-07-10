@@ -1002,6 +1002,10 @@ class ClickHouseInstance:
         shutil.copy(p.join(self.base_configs_dir, 'config.xml'), configs_dir)
         shutil.copy(p.join(self.base_configs_dir, 'users.xml'), configs_dir)
 
+        shutil.copy(p.join(self.base_configs_dir, 'server.crt'), configs_dir)
+        shutil.copy(p.join(self.base_configs_dir, 'server.key'), configs_dir)
+        shutil.copy(p.join(self.base_configs_dir, 'dhparam.pem'), configs_dir)
+
         # used by all utils with any config
         conf_d_dir = p.abspath(p.join(configs_dir, 'conf.d'))
         # used by server with main config.xml
