@@ -1002,9 +1002,10 @@ class ClickHouseInstance:
         shutil.copy(p.join(self.base_configs_dir, 'config.xml'), configs_dir)
         shutil.copy(p.join(self.base_configs_dir, 'users.xml'), configs_dir)
 
-        shutil.copy(p.join(self.base_configs_dir, 'server.crt'), configs_dir)
-        shutil.copy(p.join(self.base_configs_dir, 'server.key'), configs_dir)
-        shutil.copy(p.join(self.base_configs_dir, 'dhparam.pem'), configs_dir)
+        secret_key_path = os.environ.get('CLICKHOUSE_TESTS_BASE_CONFIG_DIR', '/etc/clickhouse-server/')
+        shutil.copy(p.join(secret_key_path, 'server.crt'), configs_dir)
+        shutil.copy(p.join(secret_key_path, 'server.key'), configs_dir)
+        shutil.copy(p.join(secret_key_path, 'dhparam.pem'), configs_dir)
 
         # used by all utils with any config
         conf_d_dir = p.abspath(p.join(configs_dir, 'conf.d'))
